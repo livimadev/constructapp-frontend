@@ -24,6 +24,7 @@ export class CustomerComponent {
     { def: 'firstName', label: 'firstName', hide: false },
     { def: 'lastName', label: 'lastName', hide: false },
     { def: 'phone', label: 'phone', hide: false },
+    { def: 'email', label: 'email', hide: false },
     { def: 'address', label: 'address', hide: false },
     { def: 'actions', label: 'actions', hide: false },
   ];
