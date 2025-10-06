@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { CustomerComponent } from '../customer-component/customer-component';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({

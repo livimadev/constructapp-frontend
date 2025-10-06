@@ -1,18 +1,13 @@
-*{ 
-    margin-top: 20px;
-    margin-left: 30px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+table {
+  width: 100%;
 }
 
-table, table tr th, table tr td{
-    border: 1px solid black;
-    border-collapse: collapse;
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }
 
-table tr th{
-    color: rgb(24, 93, 16);
-}
-
-table tr td{
-    color: rgb(88, 18, 162)
+td, th {
+  /* width: 25%; */
+  width: auto;
 }

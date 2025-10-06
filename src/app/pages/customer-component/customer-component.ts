@@ -1,20 +1,62 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 import { CustomerService } from '../../services/customer-service';
 import { Customer } from '../../model/customer';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
 
 @Component({
   selector: 'app-customer',
-  imports: [],
+  imports: [
+    MatTableModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule
+  ],
   templateUrl: './customer-component.html',
-  styleUrl: './customer-component.css'
+  styleUrl: './customer-component.css',
 })
 export class CustomerComponent {
-  customers: Customer[];
+  // customers: Customer[];
+  dataSource: MatTableDataSource<Customer>;
+  // displayedColumns: string[] = ['idCustomer', 'dni', 'firstName', 'lastName', 'phone','address'];
+  columnsDefinitions = [
+    { def: 'idCustomer', label: 'idCustomer', hide: true },
+    { def: 'dni', label: 'dni', hide: false },
+    { def: 'firstName', label: 'firstName', hide: false },
+    { def: 'lastName', label: 'lastName', hide: false },
+    { def: 'phone', label: 'phone', hide: false },
+    { def: 'address', label: 'address', hide: false },
+    { def: 'actions', label: 'actions', hide: false },
+  ];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort
 
   // constructor(private customerService: CustomerService){}
   private customerService = inject(CustomerService);
 
-  ngOnInit(): void{
-    this.customerService.findAll().subscribe(data => this.customers = data);
+  ngOnInit(): void {
+    // this.customerService.findAll().subscribe(data => this.customers = data);
+    this.customerService.findAll().subscribe((data) => {
+      this.dataSource = new MatTableDataSource(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  getDisplayedColumns() {
+    return this.columnsDefinitions.filter((cd) => !cd.hide).map((cd) => cd.def);
+  }
+
+  applyFilter(e: any) {
+    this.dataSource.filter = e.target.value.trim();
   }
 }
