@@ -1,0 +1,17 @@
+<h1>Lista de proveedores</h1>
+<table>
+    <tr>
+        <th>RUC</th>
+        <th>Nombre</th>
+        <th>Dirección</th>
+        <th>Email</th>
+    </tr>
+    @for(s of suppliers; track $index){
+        <tr>
+            <td> {{ s.ruc }} </td>
+            <td> {{ s.name }} </td>
+            <td> {{ s.address }} </td>
+            <td> {{s.email }} </td>
+        </tr>
+    }
+</table>

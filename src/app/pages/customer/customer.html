@@ -1,0 +1,20 @@
+<h1>Lista de Clientes</h1>
+<table>
+    <tr>
+        <th>DNI</th>
+        <th>Apellidos</th>
+        <th>Nombres</th>
+        <th>Email</th>
+        <th>Dirección</th>
+    </tr>
+
+    @for(c of customers; track $index){
+        <tr>
+            <td>{{ c.dni}}</td>
+            <td>{{ c.lastName}}</td>
+            <td>{{ c.firstName}}</td>
+            <td>{{ c.email}}</td>
+            <td>{{ c.address}}</td>
+        </tr>
+    }
+</table>

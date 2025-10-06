@@ -1,0 +1,22 @@
+<h1>Lista de proyectos</h1>
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Fecha Inicio</th>
+        <th>Fecha Fin</th>
+        <th>Ubicación</th>
+        <th>CustomerID</th>
+        <th>Nombre Cliente</th>
+    </tr>
+
+    @for(p of projects; track $index){
+        <tr>
+            <td>{{p.name}}</td>
+            <td>{{p.startDate}}</td>
+            <td>{{p.estimatedEndDate}}</td>
+            <td>{{p.location}}</td>
+            <td>{{p.customer.idCustomer}}</td>
+            <td>{{p.customer.lastName}} {{p.customer.firstName}}</td>
+        </tr>
+    }
+</table>

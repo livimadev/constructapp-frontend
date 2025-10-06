@@ -1,0 +1,19 @@
+*{ 
+    margin-top: 20px;
+    margin-left: 30px;
+}
+
+table, table tr th, table tr td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+table tr th{
+    color: blueviolet;
+}
+
+table tr td{
+    color: green
+}
+
