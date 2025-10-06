@@ -1,25 +1,15 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { CustomerService } from '../../services/customer-service';
 import { Customer } from '../../model/customer';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MaterialModule } from '../../material/material-module';
+
 
 @Component({
   selector: 'app-customer',
-  imports: [
-    MatTableModule,
-    MatButtonModule,
-    MatIconModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatPaginatorModule,
-    MatSortModule
-  ],
+  imports: [ MaterialModule  ],
   templateUrl: './customer-component.html',
   styleUrl: './customer-component.css',
 })

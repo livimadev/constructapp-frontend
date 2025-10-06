@@ -76,6 +76,11 @@ Crear un servicio
 ng generate service services/service_name --skip-tests
 ```
 
+Crear un modulo
+```bash
+ng generate module material
+```
+
 Agregar estilos: [angular material](https://material.angular.io/), para otro tipo de estilos visite las documentaciones correspondientes.
 
 ```bash
