@@ -47,19 +47,19 @@
             </button>
             <mat-divider></mat-divider>
             <button class="myButton" mat-menu-item (click)="sidenav.toggle()"
-                routerLink="/pages/specialty" style="cursor: pointer">
+                routerLink="/pages/customer" style="cursor: pointer">
                 <mat-icon>star_rate</mat-icon>
                 <span>Customer</span>
             </button>
             <mat-divider></mat-divider>
             <button class="myButton" mat-menu-item (click)="sidenav.toggle()"
-                routerLink="/pages/medic" style="cursor: pointer">
+                routerLink="/pages/supplier" style="cursor: pointer">
                 <mat-icon>healing</mat-icon>
                 <span>Supplier</span>
             </button>
             <mat-divider></mat-divider>
             <button class="myButton"  mat-menu-item (click)="sidenav.toggle()"
-                routerLink="/pages/exam" style="cursor: pointer">
+                routerLink="/pages/project" style="cursor: pointer">
                 <mat-icon>assignment</mat-icon>
                 <span>Project</span>
             </button>
@@ -79,7 +79,9 @@
         </mat-sidenav>
 
         <mat-sidenav-content>
-            <app-customer></app-customer>
+
+            <router-outlet/>
+            
         </mat-sidenav-content>
 
     </mat-sidenav-container>

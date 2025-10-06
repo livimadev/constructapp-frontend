@@ -5,8 +5,8 @@ import { Supplier } from '../../model/supplier';
 @Component({
   selector: 'app-supplier',
   imports: [],
-  templateUrl: './supplier.html',
-  styleUrl: './supplier.css'
+  templateUrl: './supplier-component.html',
+  styleUrl: './supplier-component.css'
 })
 
 export class SupplierComponent {

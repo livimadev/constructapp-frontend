@@ -6,6 +6,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CustomerComponent } from '../customer-component/customer-component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -16,7 +17,8 @@ import { CustomerComponent } from '../customer-component/customer-component';
     MatIconModule,
     MatMenuModule,
     MatDividerModule,
-    CustomerComponent
+    RouterOutlet,
+    RouterLink
   ],
   templateUrl: './layout-component.html',
   styleUrl: './layout-component.css',
