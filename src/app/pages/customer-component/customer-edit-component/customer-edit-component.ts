@@ -23,7 +23,7 @@ export class CustomerEditComponent {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      idCustomer: new FormControl(0),
+      idCustomer: new FormControl(),
       dni: new FormControl(''),
       firstName: new FormControl(''),
       lastName: new FormControl(''),
