@@ -1,16 +1,23 @@
-# ConstructappFrontend
+# Frontend para Aplicación Web Constructora
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.2.
+Proyecto generado usando [Angular CLI](https://github.com/angular/angular-cli) version 20.3.0.
+Frontend para la aplicación web de una biblioteca, el backend está desarrollado el SrpingBoot.
+Este proyecto es desarrollado como parte del curso <b>Soluciones Web y Aplicaciones Distribuidas</b> con <b>NRC 3423</b>, correspondiente al <b>período UPN 2025-2<b>
 
 ## Development server
 
-To start a local development server, run:
+Para iniciar el servidor local de desarrollo, ejecute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Cuando el servidor este corriendo, abrir el navegador y navegar a la url `http://localhost:4200/`. La aplicación se actualizará automáticamente cuando cuando modifique los archivos.
+Para iniciar el servidor local y abrir el navegador, ejecute:
+
+```bash
+ng serve -o
+```
 
 ## Code scaffolding
 
@@ -36,24 +43,59 @@ ng build
 
 This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
 
-## Running unit tests
+## Ejecutar el proyecto
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+Después de descargar o clonar el presente proyecto, navegue hasta la carpeta del proyecto y para descargar las dependencias, ejecute:
 
 ```bash
-ng e2e
+npm install
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Documentación
 
-## Additional Resources
+Crear el proyecto
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+ng new constructapp-frontend
+```
+
+Navegar a la carpeta del proyecto
+
+```bash
+cd constructapp-frontend
+```
+
+Crear un componente
+
+```bash
+ng generate component pages/component_name --skip-tests
+```
+
+Crear un servicio
+```bash
+ng generate service services/service_name --skip-tests
+```
+
+Agregar estilos: [angular material](https://material.angular.io/), para otro tipo de estilos visite las documentaciones correspondientes.
+
+```bash
+ng add @angular/material
+```
+
+Generar los archivos del environment
+
+```bash
+ng generate environments
+```
+Generar un archivo de centralización de las importaciones
+
+```bash
+ng generate module material
+```
+
+Instalar auth0/angular-jwt. Esta libreria ayuda, tiene utilitarios para ver si el token ha expirado o no
+
+```bash
+npm install @auth0/angular-jwt
+
+```
