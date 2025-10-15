@@ -1,17 +1,71 @@
-<h1>Lista de proveedores</h1>
-<table>
-    <tr>
-        <th>RUC</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Email</th>
-    </tr>
-    @for(s of suppliers; track $index){
-        <tr>
-            <td> {{ s.ruc }} </td>
-            <td> {{ s.name }} </td>
-            <td> {{ s.address }} </td>
-            <td> {{s.email }} </td>
-        </tr>
-    }
-</table>
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Carlos" #input />
+</mat-form-field>
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+    <!-- ID Column -->
+    <ng-container matColumnDef="idSupplier">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+      <td mat-cell *matCellDef="let row">{{ row.idSupplier }}</td>
+    </ng-container>
+
+    <!-- RUC Column -->
+    <ng-container matColumnDef="ruc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>RUC</th>
+      <td mat-cell *matCellDef="let row">{{ row.ruc }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>NAME</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>PHONE</th>
+      <td mat-cell *matCellDef="let row">{{ row.phone }}</td>
+    </ng-container>
+
+     <!-- Email Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>EMAIL</th>
+      <td mat-cell *matCellDef="let row">{{ row.email }}</td>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ADDRESS</th>
+      <td mat-cell *matCellDef="let row">{{ row.address }}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>ACTIONS</th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-button [routerLink]="['edit', row.idSupplier]">
+          <mat-icon>mode_edit</mat-icon>
+          Edit
+        </button>
+        <button mat-button>
+          <mat-icon>delete</mat-icon>
+          Delete
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getDisplayedColumns()"></tr>
+    <tr mat-row *matRowDef="let row; columns: getDisplayedColumns()"></tr>
+  </table>
+</div>
+
+<mat-paginator
+  [pageSizeOptions]="[10, 25, 50, 100]"
+  aria-label="Select page of customers"
+></mat-paginator>
+
+<button mat-fab style="float: right" routerLink="/pages/customer/new">
+  <mat-icon>add</mat-icon>
+</button>
