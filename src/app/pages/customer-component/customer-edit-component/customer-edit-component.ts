@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { MaterialModule } from '../../../material/material-module';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CustomerService } from '../../../services/customer-service';
 import { Customer } from '../../../model/customer';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-customer-edit',
@@ -18,7 +19,8 @@ export class CustomerEditComponent {
 
   constructor(
     private route: ActivatedRoute, // Tomar y conocer algo de la url activa
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private router: Router // Sirve para navegar a otra ruta
   ) {}
 
   ngOnInit(): void {
@@ -67,12 +69,27 @@ export class CustomerEditComponent {
     customer.email = this.form.value['email'];
     customer.address = this.form.value['address'];
 
-    if(this.isEdit){
+    if (this.isEdit) {
       // EDIT
-      this.customerService.update(this.id, customer).subscribe();
-    } else{
+      // this.customerService.update(this.id, customer).subscribe();
+      // PRACTICA COMUN, NO IDEAL
+      this.customerService.update(this.id, customer).subscribe(() => {
+        this.customerService.findAll().subscribe((data) => {
+          this.customerService.setCustomerChange(data);
+        });
+      });      
+    } else {
       // SAVE
-      this.customerService.save(customer).subscribe();
+      // this.customerService.save(customer).subscribe();
+      // PRACTICA IDEAL
+      this.customerService
+        .save(customer)
+        .pipe(switchMap(() => this.customerService.findAll()))
+        .subscribe((data) => {
+          this.customerService.setCustomerChange(data);
+        });
     }
+
+    this.router.navigate(['pages/customer']);
   }
 }

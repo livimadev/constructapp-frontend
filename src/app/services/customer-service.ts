@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from '../model/customer';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Customer } from '../model/customer';
 
 export class CustomerService {
   private url: string = `${environment.HOST}/customers`;
+  private customerChange: Subject<Customer[]> = new Subject<Customer[]>;
 
   constructor(private http: HttpClient){}
   
@@ -30,5 +32,14 @@ export class CustomerService {
 
   delete(id: number){
     return this.http.delete(`${this.url}/${id}`);
+  }
+
+  //////////////////////////
+  setCustomerChange(data: Customer[]){
+    this.customerChange.next(data);
+  }
+
+  getCustomerChange(){
+    return this.customerChange.asObservable();
   }
 }

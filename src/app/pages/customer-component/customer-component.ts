@@ -7,10 +7,9 @@ import { MatSort } from '@angular/material/sort';
 import { MaterialModule } from '../../material/material-module';
 import { RouterLink, RouterOutlet } from '@angular/router';
 
-
 @Component({
   selector: 'app-customer',
-  imports: [MaterialModule, RouterOutlet ,RouterLink],
+  imports: [MaterialModule, RouterOutlet, RouterLink],
   templateUrl: './customer-component.html',
   styleUrl: './customer-component.css',
 })
@@ -30,18 +29,27 @@ export class CustomerComponent {
   ];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort
+  @ViewChild(MatSort) sort: MatSort;
 
   // constructor(private customerService: CustomerService){}
   private customerService = inject(CustomerService);
 
   ngOnInit(): void {
     // this.customerService.findAll().subscribe(data => this.customers = data);
-    this.customerService.findAll().subscribe((data) => {
+    
+    /*this.customerService.findAll().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-    });
+    });*/
+    this.customerService.findAll().subscribe( data => this.createTable(data));
+    this.customerService.getCustomerChange().subscribe(data => this.createTable(data));
+  }
+
+  createTable(data: Customer[]) {
+    this.dataSource = new MatTableDataSource(data);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   getDisplayedColumns() {
