@@ -11,6 +11,7 @@ import { Subject } from 'rxjs';
 export class CustomerService {
   private url: string = `${environment.HOST}/customers`;
   private customerChange: Subject<Customer[]> = new Subject<Customer[]>;
+  private messageChange: Subject<string> = new Subject<string>;
 
   constructor(private http: HttpClient){}
   
@@ -41,5 +42,13 @@ export class CustomerService {
 
   getCustomerChange(){
     return this.customerChange.asObservable();
+  }
+
+  setMessageChange(data: string){
+    this.messageChange.next(data);
+  }
+
+  getMessageChange(){
+    return this.messageChange.asObservable();
   }
 }

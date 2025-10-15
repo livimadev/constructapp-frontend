@@ -76,6 +76,7 @@ export class CustomerEditComponent {
       this.customerService.update(this.id, customer).subscribe(() => {
         this.customerService.findAll().subscribe((data) => {
           this.customerService.setCustomerChange(data);
+          this.customerService.setMessageChange('CUSTOMER UPDATED!');
         });
       });      
     } else {
@@ -87,6 +88,7 @@ export class CustomerEditComponent {
         .pipe(switchMap(() => this.customerService.findAll()))
         .subscribe((data) => {
           this.customerService.setCustomerChange(data);
+          this.customerService.setMessageChange('CUSTOMER CREATED!');
         });
     }
 
