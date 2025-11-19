@@ -21,7 +21,7 @@
                 <mat-icon>account_box</mat-icon>
                 <span>My account</span>
             </button>
-            <button mat-menu-item (click)="sidenav.opened = false" >
+            <button mat-menu-item (click)="sidenav.opened = false" (click)="logout()" >
                 <mat-icon>exit_to_app</mat-icon>
                 <span>Logout</span>
             </button>
