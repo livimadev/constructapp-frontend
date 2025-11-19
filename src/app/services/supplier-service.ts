@@ -1,22 +1,30 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Supplier } from '../model/supplier';
 import { Subject } from 'rxjs';
+import { GenericService } from './generic-service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 // http://localhost:9090/suppliers
-export class SupplierService {
-  private url: string =  `${environment.HOST}/suppliers`;
+export class SupplierService extends GenericService<Supplier> {
+  //private url: string =  `${environment.HOST}/suppliers`;
   private supplierChange: Subject<Supplier[]> = new Subject<Supplier[]>;
   private messageChange: Subject<string> = new Subject<string>;
 
-  constructor(private http: HttpClient){}
+  constructor() {
+    super(
+      inject(HttpClient),
+      `${environment.HOST}/suppliers`
+    );
+  }
 
-  findAll(){
+  //constructor(private http: HttpClient){}
+
+  /*findAll(){
     // lista de proveedores
     // return this.http.get(this.url);
     return this.http.get<Supplier[]>(this.url);
@@ -37,7 +45,8 @@ export class SupplierService {
     delete(id: number){
       return this.http.delete(`${this.url}/${id}`);
     }
-  
+  */
+
     //////////////////////////
     setSupplierChange(data: Supplier[]){
       this.supplierChange.next(data);

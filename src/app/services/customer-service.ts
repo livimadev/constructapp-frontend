@@ -1,21 +1,33 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { HttpClient } from '@angular/common/http';
 import { Customer } from '../model/customer';
 import { Subject } from 'rxjs';
+import { GenericService } from './generic-service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class CustomerService {
-  private url: string = `${environment.HOST}/customers`;
+export class CustomerService extends GenericService<Customer> {
+  //private url: string = `${environment.HOST}/customers`;
   private customerChange: Subject<Customer[]> = new Subject<Customer[]>;
   private messageChange: Subject<string> = new Subject<string>;
 
-  constructor(private http: HttpClient){}
+  constructor() {
+    super(
+      inject(HttpClient),
+      `${environment.HOST}/customers`
+    );
+  }
+
+  listPageable(p: number, s: number) {
+    return this.http.get<any>(`${environment.HOST}/customers/pageable?page=${p}&size=${s}`);
+  }
+
+  //constructor(private http: HttpClient){}
   
-  findAll(){
+  /*findAll(){
     return this.http.get<Customer[]>(this.url);
   }
 
@@ -34,6 +46,7 @@ export class CustomerService {
   delete(id: number){
     return this.http.delete(`${this.url}/${id}`);
   }
+*/
 
   //////////////////////////
   setCustomerChange(data: Customer[]){
