@@ -1,0 +1,17 @@
+.welcome-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f4f6;
+}
+
+.welcome-card {
+  padding: 30px;
+  width: 350px;
+  text-align: center;
+}
+
+.highlight {
+  color: #4f46e5;
+}

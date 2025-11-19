@@ -46,7 +46,7 @@ export class CustomerComponent {
       this.dataSource.sort = this.sort;
     });*/
     //this.customerService.findAll().subscribe(data => this.createTable(data));
-    this.customerService.listPageable(0,5).subscribe(data => {
+    this.customerService.listPageable(0,10).subscribe(data => {
       this.createTable(data.content);
       this.paginator.length = data.totalElements;
     });

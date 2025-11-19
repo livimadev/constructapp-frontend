@@ -2,10 +2,15 @@ import { Component } from '@angular/core';
 import { MenuService } from '../../services/menu-service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from '../../../environments/environment.development';
+import { MaterialModule } from '../../material/material-module';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard-component',
-  imports: [],
+  imports: [
+    MaterialModule,
+    MatCardModule
+  ],
   templateUrl: './dashboard-component.html',
   styleUrl: './dashboard-component.css'
 })

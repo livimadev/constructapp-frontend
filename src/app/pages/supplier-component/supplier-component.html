@@ -45,7 +45,7 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef>ACTIONS</th>
       <td mat-cell *matCellDef="let row">
-        <button mat-button [routerLink]="['edit', row.idSupplier]">
+        <button mat-button (click)="openDialog(row)">
           <mat-icon>mode_edit</mat-icon>
           Edit
         </button>

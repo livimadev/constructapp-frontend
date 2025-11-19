@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-supplier',
-  imports: [MaterialModule, RouterLink],
+  imports: [MaterialModule],
   templateUrl: './supplier-component.html',
   styleUrl: './supplier-component.css',
 })
