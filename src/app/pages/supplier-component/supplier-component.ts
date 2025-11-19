@@ -7,6 +7,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MaterialModule } from '../../material/material-module';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { SupplierDialogComponent } from './supplier-dialog-component/supplier-dialog-component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-supplier',
@@ -31,10 +33,15 @@ export class SupplierComponent {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private supplierService: SupplierService, private _snackBar: MatSnackBar) {}
+  constructor(
+    private supplierService: SupplierService, 
+    private _dialog: MatDialog,
+    private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.supplierService.findAll().subscribe(data => this.createTable(data));
+    this.supplierService.getSupplierChange().subscribe(data => this.createTable(data));
+    this.supplierService.getMessageChange().subscribe(data => this._snackBar.open(data, 'INFO', { duration: 2000 }));
   }
 
   createTable(data: Supplier[]) {
@@ -45,6 +52,13 @@ export class SupplierComponent {
 
   getDisplayedColumns() {
     return this.columnsDefinitions.filter((cd) => !cd.hide).map((cd) => cd.def);
+  }
+
+  openDialog(supplier?: Supplier) {
+    this._dialog.open(SupplierDialogComponent, {
+      width: '750px',
+      data: supplier
+    });
   }
 
   applyFilter(e: any) {

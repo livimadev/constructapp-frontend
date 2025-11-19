@@ -1,0 +1,30 @@
+<mat-dialog-content>
+    <mat-toolbar><span>Supplier Info</span></mat-toolbar>
+
+<div class="example-container">
+    <mat-form-field>
+        <input matInput placeholder="RUC" [(ngModel)]="supplier.ruc">
+    </mat-form-field>
+    
+    <mat-form-field>
+        <input matInput placeholder="Name" [(ngModel)]="supplier.name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Phone" [(ngModel)]="supplier.phone">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Email" [(ngModel)]="supplier.email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Address" [(ngModel)]="supplier.address">
+    </mat-form-field>
+
+    <button mat-button (click)="operate()">Done</button>
+    <button mat-button (click)="close()">Cancel</button>
+
+</div>
+
+</mat-dialog-content>
