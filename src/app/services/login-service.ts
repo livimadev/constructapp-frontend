@@ -25,6 +25,10 @@ export class LoginService {
     return this.http.post<any>(this.url, body);
   }
 
+  isLogged(){
+    return sessionStorage.getItem(environment.TOKEN_NAME) != null;
+  }
+  
   logout(){
     sessionStorage.clear();
     this.router.navigate(['login']);
